@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, AlertCircle, CheckCircle, ArrowLeft } from 'lucide-react';
+import { useAuthContext } from '../contexts/AuthContext';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const { resetPassword } = useAuthContext();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,13 +26,13 @@ const ForgotPassword = () => {
     setIsLoading(true);
     setError('');
     
-    // Simulate API call
-    setTimeout(() => {
-      console.log('Reset password for:', email);
-      setIsLoading(false);
+    const result = await resetPassword(email);
+    setIsLoading(false);
+    if (result.error) {
+      setError(result.error);
+    } else {
       setIsSuccess(true);
-      // Here you would integrate with Supabase auth
-    }, 2000);
+    }
   };
 
   if (isSuccess) {

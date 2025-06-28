@@ -1,12 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './src/pages/Home';
 import Header from './src/components/layout/Header';
 import Footer from './src/components/layout/Footer';
 
 function App() {
   return (
-    <BrowserRouter basename="/rs-sehat-sejahtera">
+    <>
       <div className="min-h-screen bg-gray-50 flex flex-col min-h-screen">
         <Header />
         <div className="flex-1">
@@ -23,7 +23,7 @@ function App() {
         </div>
         <Footer />
       </div>
-    </BrowserRouter>
+    </>
   );
 }
 

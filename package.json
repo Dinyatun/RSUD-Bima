@@ -4,7 +4,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://haikalmamonto04.github.io/rs-sehat-sejahtera",
+  "homepage": "https://dinyatun.github.io/RSUD-Bima",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

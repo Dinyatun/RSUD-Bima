@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Eye, EyeOff, Lock, AlertCircle, Check } from 'lucide-react';
+import { useAuthContext } from '../contexts/AuthContext';
 
 const ResetPassword = () => {
   const [searchParams] = useSearchParams();
@@ -17,6 +18,7 @@ const ResetPassword = () => {
     score: 0,
     feedback: ''
   });
+  const { updatePassword } = useAuthContext();
 
   const token = searchParams.get('token');
 
@@ -83,19 +85,15 @@ const ResetPassword = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!validateForm()) return;
-
     setIsLoading(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      console.log('Reset password with token:', token);
-      console.log('New password:', formData.password);
-      setIsLoading(false);
+    const result = await updatePassword(formData.password);
+    setIsLoading(false);
+    if (result.error) {
+      setErrors({ password: result.error });
+    } else {
       setIsSuccess(true);
-      // Here you would integrate with Supabase auth
-    }, 2000);
+    }
   };
 
   const getPasswordStrengthColor = () => {
