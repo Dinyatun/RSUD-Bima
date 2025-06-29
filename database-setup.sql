@@ -1,5 +1,6 @@
--- RSUD Bima Database Setup
--- Jalankan script ini di Supabase SQL Editor
+-- 0. Aktifkan extension (jika belum) -- HAPUS JIKA ERROR
+create extension if not exists "uuid-ossp";
+create extension if not exists "pgcrypto";
 
 -- 1. Create profiles table
 CREATE TABLE IF NOT EXISTS profiles (
@@ -84,6 +85,7 @@ ALTER TABLE facilities ENABLE ROW LEVEL SECURITY;
 ALTER TABLE testimonials ENABLE ROW LEVEL SECURITY;
 
 -- 8. Create RLS Policies
+-- (semua policy Anda sudah benar, tidak perlu diubah)
 
 -- Profiles policies
 CREATE POLICY "Users can view own profile" ON profiles
@@ -196,6 +198,7 @@ END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- 10. Create trigger for new user registration
+-- HAPUS JIKA ERROR
 DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
@@ -290,4 +293,4 @@ JOIN profiles d ON a.doctor_id = d.id
 JOIN services s ON a.service_id = s.id;
 
 -- Success message
-SELECT 'Database setup completed successfully!' as message; 
+SELECT 'Database setup completed successfully!' as message;

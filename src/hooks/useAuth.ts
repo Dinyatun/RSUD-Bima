@@ -199,6 +199,7 @@ export const useAuth = () => {
     resetPassword,
     updatePassword,
     clearError,
+    // isAuthenticated hanya true jika user benar-benar login (ada session Supabase)
     isAuthenticated: !!authState.user
   };
 }; 
