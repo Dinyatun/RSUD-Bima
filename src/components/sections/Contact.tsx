@@ -19,7 +19,7 @@ const Contact: React.FC = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: 'Email',
-      info: 'info@rssehatsejahtera.com',
+      info: 'dinyatun@gmail.com',
       description: 'Konsultasi online tersedia'
     },
     {
