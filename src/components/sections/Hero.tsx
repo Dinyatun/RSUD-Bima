@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.8 }}
       >
-        Rumah Sakit modern, terpercaya, dan berteknologi tinggi untuk pelayanan kesehatan terbaik di Bima dan sekitarnya.
+        Rumah Sakit modern, terpercaya, dan berteknologi tinggi untuk pelayanan kesehatan terbaik di Cipta Hospital dan sekitarnya.
       </motion.p>
       <motion.div
         className="relative z-10 mt-10 flex flex-col sm:flex-row gap-4 justify-center"
