@@ -7,7 +7,7 @@ import './styles/globals.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter basename="/RSUD-Bima">
+    <BrowserRouter basename="/">
       <AuthProvider>
         <App />
       </AuthProvider>
