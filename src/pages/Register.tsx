@@ -103,7 +103,7 @@ const Register = () => {
             </svg>
           </motion.div>
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Daftar Akun</h2>
-          <p className="text-gray-600 dark:text-gray-300">Buat akun baru di RSUD Bima</p>
+          <p className="text-gray-600 dark:text-gray-300">Buat akun baru di Cipta Hospital</p>
         </motion.div>
         <motion.div 
           className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-gray-700"

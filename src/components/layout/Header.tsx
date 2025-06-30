@@ -48,7 +48,7 @@ const Header: React.FC = () => {
               />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-800 dark:text-white tracking-tight drop-shadow">RSUD Bima</h1>
+              <h1 className="text-xl font-bold text-gray-800 dark:text-white tracking-tight drop-shadow">Cipta Hospital</h1>
               <p className="text-sm text-gray-600 dark:text-gray-300">Rumah Sakit Terpercaya</p>
             </div>
           </Link>

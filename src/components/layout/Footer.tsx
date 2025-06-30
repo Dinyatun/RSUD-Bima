@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
                 />
               </div>
               <div>
-                <h3 className="text-xl font-bold">RSUD Bima</h3>
+                <h3 className="text-xl font-bold">Cipta Hospital</h3>
                 <p className="text-sm text-gray-300 dark:text-gray-400">Rumah Sakit Terpercaya</p>
               </div>
             </div>
@@ -118,7 +118,7 @@ const Footer: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <p className="text-gray-300 dark:text-gray-400">
-            © 2025 RSUD Bima. All rights reserved.
+            © 2025 Cipta Hospital. All rights reserved.
           </p>
         </motion.div>
       </div>

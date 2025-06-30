@@ -1,6 +1,6 @@
 {
-  "name": "rsud-bima",
-  "description": "Website RSUD Bima - Modern Healthcare Website",
+  "name": "cipta-hospital",
+  "description": "Website Cipta Hospital - Modern Healthcare Website",
   "private": true,
   "version": "1.0.0",
   "type": "module",
