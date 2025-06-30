@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, User, Phone, AlertCircle, Check } from 'lucide-react';
 import { useAuthContext } from '../contexts/AuthContext';
+import { motion } from 'framer-motion';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -84,70 +85,217 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center p-4 transition-all duration-500">
       <div className="max-w-md w-full space-y-8">
-        <div className="text-center">
-          <div className="mx-auto h-16 w-16 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center mb-4">
+        <motion.div 
+          className="text-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.div 
+            className="mx-auto h-16 w-16 bg-gradient-to-r from-blue-500 to-green-500 dark:from-blue-600 dark:to-green-600 rounded-full flex items-center justify-center mb-4 shadow-lg"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
             </svg>
-          </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">Daftar Akun</h2>
-          <p className="text-gray-600">Buat akun baru di RSUD Bima</p>
-        </div>
-        <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+          </motion.div>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Daftar Akun</h2>
+          <p className="text-gray-600 dark:text-gray-300">Buat akun baru di RSUD Bima</p>
+        </motion.div>
+        <motion.div 
+          className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-gray-700"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
+              <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nama Lengkap</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><User className="h-5 w-5 text-gray-400" /></div>
-                <input id="fullName" name="fullName" type="text" autoComplete="name" required value={formData.fullName} onChange={handleChange} className={`block w-full pl-10 pr-3 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${errors.fullName ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'}`} placeholder="Masukkan nama lengkap" />
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><User className="h-5 w-5 text-gray-400 dark:text-gray-500" /></div>
+                <input 
+                  id="fullName" 
+                  name="fullName" 
+                  type="text" 
+                  autoComplete="name" 
+                  required 
+                  value={formData.fullName} 
+                  onChange={handleChange} 
+                  className={`block w-full pl-10 pr-3 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-green-500 focus:border-transparent transition-all duration-200 bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm ${
+                    errors.fullName 
+                      ? 'border-red-300 bg-red-50 dark:bg-red-900/20' 
+                      : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'
+                  }`} 
+                  placeholder="Masukkan nama lengkap" 
+                />
                 {errors.fullName && <div className="absolute inset-y-0 right-0 pr-3 flex items-center"><AlertCircle className="h-5 w-5 text-red-400" /></div>}
               </div>
-              {errors.fullName && <p className="mt-1 text-sm text-red-600 flex items-center"><AlertCircle className="h-4 w-4 mr-1" />{errors.fullName}</p>}
+              {errors.fullName && <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center"><AlertCircle className="h-4 w-4 mr-1" />{errors.fullName}</p>}
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Mail className="h-5 w-5 text-gray-400" /></div>
-                <input id="email" name="email" type="email" autoComplete="email" required value={formData.email} onChange={handleChange} className={`block w-full pl-10 pr-3 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${errors.email ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'}`} placeholder="Masukkan email Anda" />
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Mail className="h-5 w-5 text-gray-400 dark:text-gray-500" /></div>
+                <input 
+                  id="email" 
+                  name="email" 
+                  type="email" 
+                  autoComplete="email" 
+                  required 
+                  value={formData.email} 
+                  onChange={handleChange} 
+                  className={`block w-full pl-10 pr-3 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-green-500 focus:border-transparent transition-all duration-200 bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm ${
+                    errors.email 
+                      ? 'border-red-300 bg-red-50 dark:bg-red-900/20' 
+                      : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'
+                  }`} 
+                  placeholder="Masukkan email Anda" 
+                />
                 {errors.email && <div className="absolute inset-y-0 right-0 pr-3 flex items-center"><AlertCircle className="h-5 w-5 text-red-400" /></div>}
               </div>
-              {errors.email && <p className="mt-1 text-sm text-red-600 flex items-center"><AlertCircle className="h-4 w-4 mr-1" />{errors.email}</p>}
+              {errors.email && <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center"><AlertCircle className="h-4 w-4 mr-1" />{errors.email}</p>}
             </div>
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">Nomor Telepon</label>
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nomor Telepon</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Phone className="h-5 w-5 text-gray-400" /></div>
-                <input id="phone" name="phone" type="tel" autoComplete="tel" required value={formData.phone} onChange={handleChange} className={`block w-full pl-10 pr-3 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${errors.phone ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'}`} placeholder="Contoh: 08123456789" />
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Phone className="h-5 w-5 text-gray-400 dark:text-gray-500" /></div>
+                <input 
+                  id="phone" 
+                  name="phone" 
+                  type="tel" 
+                  autoComplete="tel" 
+                  required 
+                  value={formData.phone} 
+                  onChange={handleChange} 
+                  className={`block w-full pl-10 pr-3 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-green-500 focus:border-transparent transition-all duration-200 bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm ${
+                    errors.phone 
+                      ? 'border-red-300 bg-red-50 dark:bg-red-900/20' 
+                      : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'
+                  }`} 
+                  placeholder="Contoh: 08123456789" 
+                />
                 {errors.phone && <div className="absolute inset-y-0 right-0 pr-3 flex items-center"><AlertCircle className="h-5 w-5 text-red-400" /></div>}
               </div>
-              {errors.phone && <p className="mt-1 text-sm text-red-600 flex items-center"><AlertCircle className="h-4 w-4 mr-1" />{errors.phone}</p>}
+              {errors.phone && <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center"><AlertCircle className="h-4 w-4 mr-1" />{errors.phone}</p>}
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Password</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Lock className="h-5 w-5 text-gray-400" /></div>
-                <input id="password" name="password" type={showPassword ? 'text' : 'password'} autoComplete="new-password" required value={formData.password} onChange={handleChange} className={`block w-full pl-10 pr-12 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${errors.password ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'}`} placeholder="Minimal 8 karakter" />
-                <button type="button" className="absolute inset-y-0 right-0 pr-3 flex items-center" onClick={() => setShowPassword(!showPassword)}>{showPassword ? <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" /> : <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />}</button>
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Lock className="h-5 w-5 text-gray-400 dark:text-gray-500" /></div>
+                <input 
+                  id="password" 
+                  name="password" 
+                  type={showPassword ? 'text' : 'password'} 
+                  autoComplete="new-password" 
+                  required 
+                  value={formData.password} 
+                  onChange={handleChange} 
+                  className={`block w-full pl-10 pr-12 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-green-500 focus:border-transparent transition-all duration-200 bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm ${
+                    errors.password 
+                      ? 'border-red-300 bg-red-50 dark:bg-red-900/20' 
+                      : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'
+                  }`} 
+                  placeholder="Minimal 8 karakter" 
+                />
+                <button 
+                  type="button" 
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center" 
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <EyeOff className="h-5 w-5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300" /> : <Eye className="h-5 w-5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300" />}
+                </button>
               </div>
-              {formData.password && (<div className="mt-2"><div className="flex items-center space-x-2"><div className="flex-1 bg-gray-200 rounded-full h-2"><div className={`h-2 rounded-full transition-all duration-300 ${getPasswordStrengthColor()}`} style={{ width: `${(passwordStrength.score / 5) * 100}%` }}></div></div><span className="text-xs text-gray-500">{passwordStrength.feedback}</span></div></div>)}
-              {errors.password && <p className="mt-1 text-sm text-red-600 flex items-center"><AlertCircle className="h-4 w-4 mr-1" />{errors.password}</p>}
+              {formData.password && (
+                <div className="mt-2">
+                  <div className="flex items-center space-x-2">
+                    <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                      <div className={`h-2 rounded-full transition-all duration-300 ${getPasswordStrengthColor()}`} style={{ width: `${(passwordStrength.score / 5) * 100}%` }}></div>
+                    </div>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">{passwordStrength.feedback}</span>
+                  </div>
+                </div>
+              )}
+              {errors.password && <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center"><AlertCircle className="h-4 w-4 mr-1" />{errors.password}</p>}
             </div>
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">Konfirmasi Password</label>
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Konfirmasi Password</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Lock className="h-5 w-5 text-gray-400" /></div>
-                <input id="confirmPassword" name="confirmPassword" type={showConfirmPassword ? 'text' : 'password'} autoComplete="new-password" required value={formData.confirmPassword} onChange={handleChange} className={`block w-full pl-10 pr-12 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${errors.confirmPassword ? 'border-red-300 bg-red-50' : formData.confirmPassword && formData.password === formData.confirmPassword ? 'border-green-300 bg-green-50' : 'border-gray-300 hover:border-gray-400'}`} placeholder="Ulangi password Anda" />
-                <div className="absolute inset-y-0 right-0 pr-3 flex items-center">{formData.confirmPassword && formData.password === formData.confirmPassword ? (<Check className="h-5 w-5 text-green-500" />) : (<button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>{showConfirmPassword ? (<EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />) : (<Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />)}</button>)}</div>
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Lock className="h-5 w-5 text-gray-400 dark:text-gray-500" /></div>
+                <input 
+                  id="confirmPassword" 
+                  name="confirmPassword" 
+                  type={showConfirmPassword ? 'text' : 'password'} 
+                  autoComplete="new-password" 
+                  required 
+                  value={formData.confirmPassword} 
+                  onChange={handleChange} 
+                  className={`block w-full pl-10 pr-12 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-green-500 focus:border-transparent transition-all duration-200 bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm ${
+                    errors.confirmPassword 
+                      ? 'border-red-300 bg-red-50 dark:bg-red-900/20' 
+                      : formData.confirmPassword && formData.password === formData.confirmPassword 
+                        ? 'border-green-300 bg-green-50 dark:bg-green-900/20' 
+                        : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'
+                  }`} 
+                  placeholder="Ulangi password Anda" 
+                />
+                <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+                  {formData.confirmPassword && formData.password === formData.confirmPassword ? (
+                    <Check className="h-5 w-5 text-green-500" />
+                  ) : (
+                    <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                      {showConfirmPassword ? (
+                        <EyeOff className="h-5 w-5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300" />
+                      ) : (
+                        <Eye className="h-5 w-5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300" />
+                      )}
+                    </button>
+                  )}
+                </div>
               </div>
-              {errors.confirmPassword && <p className="mt-1 text-sm text-red-600 flex items-center"><AlertCircle className="h-4 w-4 mr-1" />{errors.confirmPassword}</p>}
+              {errors.confirmPassword && <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center"><AlertCircle className="h-4 w-4 mr-1" />{errors.confirmPassword}</p>}
             </div>
-            <div className="flex items-start"><div className="flex items-center h-5"><input id="terms" name="terms" type="checkbox" required className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" /></div><div className="ml-3 text-sm"><label htmlFor="terms" className="text-gray-700">Saya setuju dengan{' '}<a href="#" className="text-blue-600 hover:text-blue-500">Syarat dan Ketentuan</a>{' '}dan{' '}<a href="#" className="text-blue-600 hover:text-blue-500">Kebijakan Privasi</a></label></div></div>
-            <button type="submit" disabled={isLoading} className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl">{isLoading ? (<div className="flex items-center"><div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>Membuat akun...</div>) : ('Daftar Sekarang')}</button>
+            <div className="flex items-start">
+              <div className="flex items-center h-5">
+                <input id="terms" name="terms" type="checkbox" required className="h-4 w-4 text-blue-600 dark:text-green-500 focus:ring-blue-500 dark:focus:ring-green-500 border-gray-300 dark:border-gray-600 rounded" />
+              </div>
+              <div className="ml-3 text-sm">
+                <label htmlFor="terms" className="text-gray-700 dark:text-gray-300">
+                  Saya setuju dengan{' '}
+                  <a href="#" className="text-blue-600 dark:text-green-400 hover:text-blue-500 dark:hover:text-green-300">Syarat dan Ketentuan</a>
+                  {' '}dan{' '}
+                  <a href="#" className="text-blue-600 dark:text-green-400 hover:text-blue-500 dark:hover:text-green-300">Kebijakan Privasi</a>
+                </label>
+              </div>
+            </div>
+            <motion.button 
+              type="submit" 
+              disabled={isLoading} 
+              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-green-600 dark:from-blue-700 dark:to-green-700 hover:from-blue-700 hover:to-green-700 dark:hover:from-blue-800 dark:hover:to-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {isLoading ? (
+                <div className="flex items-center">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                  Membuat akun...
+                </div>
+              ) : (
+                'Daftar Sekarang'
+              )}
+            </motion.button>
           </form>
-          <div className="mt-6 text-center"><p className="text-sm text-gray-600">Sudah punya akun?{' '}<Link to="/login" className="font-medium text-blue-600 hover:text-blue-500 transition-colors">Masuk</Link></p></div>
-        </div>
+          <div className="mt-6 text-center">
+            <p className="text-sm text-gray-600 dark:text-gray-300">
+              Sudah punya akun?{' '}
+              <Link to="/login" className="font-medium text-blue-600 dark:text-green-400 hover:text-blue-500 dark:hover:text-green-300 transition-colors">
+                Masuk
+              </Link>
+            </p>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

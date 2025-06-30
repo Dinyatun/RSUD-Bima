@@ -30,13 +30,13 @@ const Facilities: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white dark:bg-gray-900 transition-all duration-500">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4 drop-shadow-lg">
             Fasilitas Kami
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-600 dark:text-gray-300">
             Fasilitas modern untuk kenyamanan pasien
           </p>
         </div>
@@ -45,25 +45,25 @@ const Facilities: React.FC = () => {
           {facilities.map((facility, index) => (
             <motion.div
               key={index}
-              className="bg-gray-50 rounded-2xl overflow-hidden hover:bg-white hover:shadow-lg transition-all duration-300"
+              className="bg-gray-50/80 dark:bg-gray-800/80 backdrop-blur-lg border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden hover:bg-white/90 dark:hover:bg-gray-900/90 hover:shadow-2xl transition-all duration-300 group"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
-              whileHover={{ y: -5 }}
+              whileHover={{ y: -8, scale: 1.02 }}
             >
               <div className="h-48 overflow-hidden">
                 <img 
                   src={facility.image} 
                   alt={facility.title}
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
               <div className="p-6 text-center">
-                <div className="text-3xl mb-3">{facility.icon}</div>
-                <h3 className="text-lg font-bold text-gray-800 mb-2">
+                <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">{facility.icon}</div>
+                <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-2">
                   {facility.title}
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 dark:text-gray-300 text-sm">
                   {facility.description}
                 </p>
               </div>

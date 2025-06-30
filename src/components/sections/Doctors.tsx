@@ -30,13 +30,13 @@ const Doctors: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50 dark:bg-gray-900 transition-all duration-500">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4 drop-shadow-lg">
             Dokter Spesialis Kami
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-600 dark:text-gray-300">
             Tim dokter berpengalaman dan profesional
           </p>
         </div>
@@ -45,26 +45,26 @@ const Doctors: React.FC = () => {
           {doctors.map((doctor, index) => (
             <motion.div
               key={index}
-              className="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-xl transition-all duration-300"
+              className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border border-gray-100 dark:border-gray-800 p-6 rounded-2xl shadow-lg text-center hover:bg-white/90 dark:hover:bg-gray-900/90 hover:shadow-2xl transition-all duration-300 group animate-fade-in"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
-              whileHover={{ y: -5 }}
+              whileHover={{ y: -8, scale: 1.04 }}
             >
-              <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
+              <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-4 border-sky-400 dark:border-teal-500 shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <img 
                   src={doctor.image} 
                   alt={`Foto ${doctor.name}`}
                   className="w-full h-full object-cover"
                 />
               </div>
-              <h3 className="text-lg font-bold text-gray-800 mb-2">
+              <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-2 drop-shadow">
                 {doctor.name}
               </h3>
-              <p className="text-sky-500 font-medium mb-2">
+              <p className="text-sky-500 dark:text-teal-400 font-medium mb-2">
                 {doctor.specialty}
               </p>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 dark:text-gray-300 text-sm">
                 {doctor.experience} pengalaman
               </p>
             </motion.div>

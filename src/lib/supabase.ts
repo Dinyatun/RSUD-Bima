@@ -44,8 +44,15 @@ export const auth = {
 
   // Reset password
   resetPassword: async (email: string) => {
+    // Deteksi environment: production (GitHub Pages) atau local
+    let redirectTo = '';
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      redirectTo = 'http://localhost:5173/reset-password';
+    } else {
+      redirectTo = 'https://dinyatun.github.io/RSUD-Bima/reset-password';
+    }
     const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/reset-password`
+      redirectTo
     });
     return { data, error };
   },
