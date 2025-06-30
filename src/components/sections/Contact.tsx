@@ -13,7 +13,7 @@ const Contact: React.FC = () => {
     {
       icon: <Phone className="w-6 h-6" />,
       title: 'Telepon',
-      info: '+62 21 1234 5678',
+      info: '+62 896 6858 2350',
       description: 'Layanan 24 jam setiap hari'
     },
     {
